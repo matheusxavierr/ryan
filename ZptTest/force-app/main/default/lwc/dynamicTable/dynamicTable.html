@@ -1,0 +1,39 @@
+<template>
+    <lightning-card title="Tabela Dinâmica">
+        <div class="slds-p-around_medium">
+            <lightning-combobox
+                label="Objeto"
+                placeholder="Selecione um objeto"
+                options={objectOptions}
+                value={selectedObject}
+                onchange={handleObjectChange}>
+            </lightning-combobox>
+
+            <template if:true={fieldsOptions}>
+                <lightning-dual-listbox
+                    name="fields"
+                    label="Campos"
+                    source-label="Disponíveis"
+                    selected-label="Selecionados"
+                    options={fieldsOptions}
+                    value={selectedFields}
+                    onchange={handleFieldChange}>
+                </lightning-dual-listbox>
+            </template>
+
+            <lightning-button
+                label="Buscar"
+                onclick={handleSearch}
+                class="slds-m-top_medium">
+            </lightning-button>
+        </div>
+
+        <template if:true={records.length}>
+            <lightning-datatable
+                key-field="Id"
+                data={records}
+                columns={columns}>
+            </lightning-datatable>
+        </template>
+    </lightning-card>
+</template>
